@@ -18,6 +18,25 @@ const Viewed = [
   'https://images.unsplash.com/photo-1542068829-1115f7259450?fit=crop&w=240&q=80',
 ];
 
+const Challenge = {
+  CarPooling : 'https://greenbank1.s3.ap-south-1.amazonaws.com/car-pooling.jpeg',
+  Cycling : 'https://greenbank1.s3.ap-south-1.amazonaws.com/cycling.jpg',
+  EWaste : 'https://greenbank1.s3.ap-south-1.amazonaws.com/e-waste.jpeg',
+  PublicTransport : 'https://greenbank1.s3.ap-south-1.amazonaws.com/public-transport.png',
+  RecyclePlastic : 'https://greenbank1.s3.ap-south-1.amazonaws.com/recycle-plastic.png',
+  StairClimbing : 'https://greenbank1.s3.ap-south-1.amazonaws.com/stair-climbing.jpg',
+  TreePlanting : 'https://greenbank1.s3.ap-south-1.amazonaws.com/tree-planting.jpeg'
+};
+
+const Picture = {
+  Palash : 'https://greenbank1.s3.ap-south-1.amazonaws.com/me1.jpg',
+  Suraj : 'https://greenbank1.s3.ap-south-1.amazonaws.com/suraj.png',
+  Shyamu : 'https://greenbank1.s3.ap-south-1.amazonaws.com/sam.jpg',
+  Pankaj : 'https://greenbank1.s3.ap-south-1.amazonaws.com/pankaj.jpg',
+  Mayur : 'https://greenbank1.s3.ap-south-1.amazonaws.com/mayur.jpg',
+  Maitri : 'https://greenbank1.s3.ap-south-1.amazonaws.com/maitri.jpg'
+}
+
 export default {
   Onboarding,
   Pro,
@@ -25,4 +44,6 @@ export default {
   Profile,
   Viewed,
   Avatar,
+  Challenge,
+  Picture
 }

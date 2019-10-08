@@ -1,45 +1,36 @@
 import React from 'react';
-import { connect } from "react-redux";
-import { StyleSheet, Dimensions, ScrollView, ActivityIndicator } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { Button, Block, Text, Input, theme } from 'galio-framework';
 
-import { Icon, Product, Post } from '../components/';
+import { Icon, Product } from '../components/';
 
 const { width } = Dimensions.get('screen');
 import products from '../constants/products';
 
-import { getPost } from "../actions/postAction";
-import _ from 'lodash';
-import materialTheme from '../constants/Theme';
+export default class Feed extends React.Component {
 
-class Home extends React.Component {
-
-  componentDidMount(){
-    this.props.dispatch(getPost());
+  renderProducts = () => {
+    return (
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.products}>
+        <Block flex>
+          <Product product={products[0]} horizontal />
+          <Block flex row>
+            <Product product={products[1]} style={{ marginRight: theme.SIZES.BASE }} />
+            <Product product={products[2]} />
+          </Block>
+          <Product product={products[3]} horizontal />
+          <Product product={products[4]} full />
+        </Block>
+      </ScrollView>
+    )
   }
 
   render() {
-
-    let {posts} = this.props;
-
-    const renderPosts = _.map(posts, item => {
-      return <Post key={item.id} post={item} />
-    });
-
     return (
       <Block flex center style={styles.home}>
-
-        { 
-          this.props.processing && this.props.processing === true ? 
-            <Text bold style={{ marginTop : 10 }} color={materialTheme.COLORS.SUCCESS}>Loading...</Text> :
-            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.products}>
-              <Block flex>
-                {renderPosts}
-              </Block>
-            </ScrollView>
-        }
-        
-        
+        {this.renderProducts()}
       </Block>
     );
   }
@@ -94,11 +85,3 @@ const styles = StyleSheet.create({
     paddingVertical: theme.SIZES.BASE * 2,
   },
 });
-
-const mapStateToProps = state => ({
-  posts: state.posts.posts,
-  processing: state.posts.processing,
-  error: state.posts.error
-});
-
-export default connect(mapStateToProps)(Home);
