@@ -4,7 +4,9 @@ import { StyleSheet, Dimensions, ScrollView, ActivityIndicator, Picker, Image, D
 import { Button, Block, Text, Input, theme } from 'galio-framework';
 import Header from '../components/Header';
 import { withNavigation } from 'react-navigation';
-import { DocumentPicker, ImagePicker } from 'expo';
+
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
 
 import { Icon, Product, Post } from '../components/';
 import { Ionicons } from '@expo/vector-icons';
@@ -24,6 +26,18 @@ class SubmitEvidence extends React.Component {
     title : 'Evidence - ',
     desc : '',
     image : null
+  }
+
+  async componentDidMount() {
+    const permission = await Permissions.getAsync(Permissions.CAMERA_ROLL);
+    if (permission.status !== 'granted') {
+        const newPermission = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        if (newPermission.status === 'granted') {
+          //its granted.
+        }
+    } else {
+
+    }
   }
 
   pickImage = async () => {
@@ -111,7 +125,7 @@ class SubmitEvidence extends React.Component {
             </Block>
           </Block>
 
-          <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
+          <Block center style={{ paddingHorizontal: theme.SIZES.BASE }}>
             <Button onPress={this.pickImage} shadowless color={materialTheme.COLORS.INFO} style={[styles.button, styles.shadow]}>
               Select evidence
             </Button>
@@ -120,7 +134,7 @@ class SubmitEvidence extends React.Component {
 
 
 
-          <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
+          <Block style={{ paddingHorizontal: theme.SIZES.BASE, marginTop : 5 }}>
             <Block center>
               <Button onPress={this.submitEvidence} shadowless color={materialTheme.COLORS.SUCCESS} style={[styles.button, styles.shadow]}>
                 Submit
