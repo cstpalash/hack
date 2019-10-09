@@ -1,7 +1,7 @@
 import React from 'react';
 import { Easing, Animated, Platform } from 'react-native';
 import { createSwitchNavigator, createStackNavigator, createDrawerNavigator, createAppContainer } from 'react-navigation';
-
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { Block, Text, theme } from "galio-framework";
 
 import ComponentsScreen from '../screens/Components';
@@ -14,8 +14,10 @@ import SettingsScreen from '../screens/Settings';
 import Menu from './Menu';
 import Header from '../components/Header';
 import { Drawer } from '../components/';
+import materialTheme from '../constants/Theme';
 
 import NavigationService from '../services/NavigationService';
+import { Ionicons } from '@expo/vector-icons';
 
 const transitionConfig = (transitionProps, prevTransitionProps) => ({
   transitionSpec: {
@@ -89,6 +91,58 @@ const ComponentsStack = createStackNavigator({
   transitionConfig,
 });
 
+const HomeStack = createMaterialBottomTabNavigator(
+  {
+    Feed: { 
+      screen: HomeScreen, 
+      navigationOptions: {
+        tabBarLabel: 'Feed',
+        tabBarIcon: <Ionicons name="ios-paper" size={24} />,
+        gesturesEnabled: false,
+      }
+    },
+    Leaders: { 
+      screen: ProScreen,
+      navigationOptions: {
+        tabBarLabel: 'Leaders',
+        tabBarIcon: <Ionicons name="ios-people" size={24} />,
+        gesturesEnabled: false,
+      }
+    },
+    Challenge: { 
+      screen: HomeScreen,
+      navigationOptions: {
+        tabBarLabel: 'Challenge',
+        tabBarIcon: <Ionicons name="md-add-circle-outline" size={24} />,
+        gesturesEnabled: false,
+      }
+    },
+    Stats: { 
+      screen: HomeScreen,
+      navigationOptions: {
+        tabBarLabel: 'Stats',
+        tabBarIcon: <Ionicons name="ios-cube" size={24} />,
+        gesturesEnabled: false,
+      }
+    },
+    Market: { 
+      screen: HomeScreen,
+      navigationOptions: {
+        tabBarLabel: 'Market',
+        tabBarIcon: <Ionicons name="ios-cart" size={24} />,
+        gesturesEnabled: false,
+      }
+    }
+  },
+  {
+    initialRouteName: 'Feed',
+    activeColor: materialTheme.COLORS.SUCCESS,
+    inactiveColor: materialTheme.COLORS.MUTED,
+    barStyle: { backgroundColor: '#EEEEEE' },
+  }
+);
+
+/*
 const HomeStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
@@ -110,6 +164,7 @@ const HomeStack = createStackNavigator({
   },
   transitionConfig,
 });
+*/
 
 const AppStack = createDrawerNavigator(
   {

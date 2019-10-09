@@ -10,7 +10,7 @@ export default [
         createdOn : '10 Oct 2019 at 10:20am',
       },
       start : null,
-      end : '31 Dec 2019 at 11:59pm',
+      end : '31 Dec 2019',
       idea : {
         id : 1,
         name : 'Tree planting',
@@ -53,7 +53,7 @@ export default [
         createdOn : '10 Oct 2019 at 04:35pm',
       },
       start : null,
-      end : '31 Mar 2020 at 11:59pm',
+      end : '31 Mar 2020',
       idea : {
         id : 2,
         name : 'Using public transport',
@@ -96,7 +96,7 @@ export default [
         createdOn : '10 Oct 2019 at 11:30am',
       },
       start : null,
-      end : '01 Jan 2020 at 11:59pm',
+      end : '01 Jan 2020',
       idea : {
         id : 3,
         name : 'Cycling',

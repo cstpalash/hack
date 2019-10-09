@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { StyleSheet, Dimensions, ScrollView, ActivityIndicator } from 'react-native';
 import { Button, Block, Text, Input, theme } from 'galio-framework';
+import Header from '../components/Header';
 
 import { Icon, Product, Post } from '../components/';
 
@@ -11,6 +12,8 @@ import products from '../constants/products';
 import { getPost } from "../actions/postAction";
 import _ from 'lodash';
 import materialTheme from '../constants/Theme';
+
+import NavigationService from '../services/NavigationService.js';
 
 class Home extends React.Component {
 
@@ -28,18 +31,21 @@ class Home extends React.Component {
 
     return (
       <Block flex center style={styles.home}>
+        <Header search title="Home" />
+        <Block >
 
-        { 
-          this.props.processing && this.props.processing === true ? 
-            <Text bold style={{ marginTop : 10 }} color={materialTheme.COLORS.SUCCESS}>Loading...</Text> :
-            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.products}>
-              <Block flex>
-                {renderPosts}
-              </Block>
-            </ScrollView>
-        }
-        
-        
+          { 
+            this.props.processing && this.props.processing === true ? 
+              <Text bold style={{ marginTop : 10 }} color={materialTheme.COLORS.SUCCESS}>Loading...</Text> :
+              <ScrollView style={{ marginBottom : 150 }} showsVerticalScrollIndicator={false} contentContainerStyle={styles.products}>
+                <Block flex>
+                  {renderPosts}
+                </Block>
+              </ScrollView>
+          }
+          
+          
+        </Block>
       </Block>
     );
   }
@@ -47,7 +53,7 @@ class Home extends React.Component {
 
 const styles = StyleSheet.create({
   home: {
-    width: width,    
+    width: width 
   },
   search: {
     height: 48,
@@ -91,7 +97,7 @@ const styles = StyleSheet.create({
   },
   products: {
     width: width - theme.SIZES.BASE * 2,
-    paddingVertical: theme.SIZES.BASE * 2,
+    paddingVertical: theme.SIZES.BASE * 2
   },
 });
 
