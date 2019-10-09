@@ -6,6 +6,10 @@ function setTopLevelNavigator(navigatorRef) {
   _navigator = navigatorRef;
 }
 
+function get(){
+	return _navigator;
+}
+
 function navigate(routeName, params = {}) {
   _navigator.dispatch(
     NavigationActions.navigate({
@@ -20,4 +24,5 @@ function navigate(routeName, params = {}) {
 export default {
   navigate,
   setTopLevelNavigator,
+  get
 };

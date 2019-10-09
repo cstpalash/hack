@@ -7,6 +7,7 @@ import materialTheme from '../constants/Theme';
 import Images from '../constants/Images';
 import { Ionicons } from '@expo/vector-icons';
 import numeral from 'numeral';
+import NavigationService from '../services/NavigationService.js';
 
 import _ from 'lodash';
 
@@ -17,7 +18,13 @@ class Leader extends React.Component {
   constructor(props) {
     super(props);
 
-    
+    this.navigateToProfile = this.navigateToProfile.bind(this);
+  }
+
+
+
+  navigateToProfile(){
+    this.props.navigation.navigate('UserProfile', { email : this.props.leader.email});
   }
 
 
@@ -29,14 +36,14 @@ class Leader extends React.Component {
     return (
       <Block card flex style={[styles.product, styles.shadow, style]}>
         <Block row >
-          <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro', { product: product })}>
+          <TouchableWithoutFeedback onPress={this.navigateToProfile}>
             <Block center flex style={[styles.imageContainer, styles.shadow]}>
               <Image source={{ uri: leader.pic }} style={styles.avatar} />
               <Text size={12} muted>{leader.name}</Text>
               <Text size={12} muted>{leader.city}, {leader.country}</Text>
             </Block>
           </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro', { product: product })}>
+          <TouchableWithoutFeedback onPress={this.navigateToProfile}>
             <Block flex style={{ marginTop : 5}}>
               <Block >
                 <Text bold size={20} style={styles.productTitle}>Rank - {leader.rank}</Text>

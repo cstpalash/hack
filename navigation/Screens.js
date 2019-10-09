@@ -59,8 +59,7 @@ const ProfileStack = createStackNavigator({
   Profile: {
     screen: ProfileScreen,
     navigationOptions: ({ navigation }) => ({
-      header: <Header white transparent title="Profile" navigation={navigation} />,
-      headerTransparent: true,
+      header: <Header title="Profile" navigation={navigation} />,
     })
   },
 }, {
@@ -92,6 +91,24 @@ const ComponentsStack = createStackNavigator({
   transitionConfig,
 });
 
+const LeaderBoardStack = createStackNavigator({
+  Leaders: {
+    screen: LeaderBoard,
+    navigationOptions: ({ navigation }) => ({
+      header: <Header search title="Leaders" navigation={navigation} />,
+    })
+  },
+  UserProfile: {
+    screen: ProfileScreen
+  },
+},
+{
+  cardStyle: { 
+    backgroundColor: '#EEEEEE', //this is the backgroundColor for the app
+  },
+  transitionConfig,
+});
+
 const HomeStack = createMaterialBottomTabNavigator(
   {
     Feed: { 
@@ -103,7 +120,7 @@ const HomeStack = createMaterialBottomTabNavigator(
       }
     },
     Leaders: { 
-      screen: LeaderBoard,
+      screen: LeaderBoardStack,
       navigationOptions: {
         tabBarLabel: 'Leaders',
         tabBarIcon: <Ionicons name="ios-people" size={24} />,
@@ -119,7 +136,7 @@ const HomeStack = createMaterialBottomTabNavigator(
       }
     },
     Stats: { 
-      screen: HomeScreen,
+      screen: ProfileScreen,
       navigationOptions: {
         tabBarLabel: 'Stats',
         tabBarIcon: <Ionicons name="ios-cube" size={24} />,

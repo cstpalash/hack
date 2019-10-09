@@ -30,13 +30,12 @@ class LeaderBoard extends React.Component {
 
     return (
       <Block flex center style={styles.home}>
-        <Header search title="Leaders" />
         <Block >
 
           { 
             this.props.processing && this.props.processing === true ? 
               <Text bold style={{ marginTop : 10 }} color={materialTheme.COLORS.SUCCESS}>Loading...</Text> :
-              <ScrollView style={{ marginBottom : 150 }} showsVerticalScrollIndicator={false} contentContainerStyle={styles.products}>
+              <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.products}>
                 <Block flex>
                   {renderLeaders}
                 </Block>
@@ -96,7 +95,7 @@ const styles = StyleSheet.create({
   },
   products: {
     width: width - theme.SIZES.BASE * 2,
-    paddingVertical: theme.SIZES.BASE * 2
+    paddingVertical: theme.SIZES.BASE
   },
 });
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform } from 'react-native';
+import { withNavigation } from 'react-navigation';
+import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform, TouchableWithoutFeedback } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -7,28 +8,91 @@ import { Icon } from '../components';
 import { Images, materialTheme } from '../constants';
 import { HeaderHeight } from "../constants/utils";
 import { Ionicons } from '@expo/vector-icons';
+import numeral from 'numeral';
+
+import NavigationService from '../services/NavigationService.js';
+
+import leaders from '../data/leaders';
+import _ from 'lodash';
 
 
 const { width, height } = Dimensions.get('screen');
 const thumbMeasure = (width - 48 - 32) / 3;
 
-export default class Profile extends React.Component {
+
+class Profile extends React.Component {
+
   render() {
+
+    const { navigation, product, horizontal, full, style, priceColor, imageStyle } = this.props;
+    const imageStyles = [styles.image, full ? styles.fullImage : styles.horizontalImage, imageStyle];
+
+    let currentProfile = null;
+    let email = navigation.getParam('email', 'palash.roy@db.com');
+
+    currentProfile = _.find(leaders, item => {
+      return item.email == email
+    });
+
+    const renderActiveChallenges = _.map(currentProfile.activeChallenges, item => {
+      return (
+        <Block card flex style={[styles.product, styles.shadow, style]} key={item.id}>
+          <Block row >
+            <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro', { product: product })}>
+              <Block flex style={[styles.imageContainer, styles.shadow]}>
+                <Image source={{ uri: item.idea.pic }} style={imageStyles} />
+              </Block>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro', { product: product })}>
+              <Block flex style={{ marginTop : 5}}>
+                <Block row >
+                  <Image source={{ uri: item.by.pic}} style={styles.avatar} />
+                  <Block style={{ marginLeft : 5}}>
+                    <Text size={12} muted>{item.by.name}</Text>
+                    <Text size={12} muted>{item.by.createdOn}</Text>
+                  </Block>
+                </Block>
+                <Block >
+                  <Text bold size={14} style={styles.productTitle}>{item.idea.name}</Text>
+                  
+                </Block>
+                <Block >
+                  <Text size={14} style={styles.productTitle}>{item.idea.desc}</Text>
+                </Block>
+              </Block>
+            </TouchableWithoutFeedback>
+            
+          </Block>
+          <Block row style={styles.productDescription} space="between">
+            <Block center row>
+              <Text bold size={14} >{item.idea.measure.leaf}</Text>
+              <Ionicons name="ios-leaf" size={20} color={materialTheme.COLORS.SUCCESS} style={{ marginLeft : 5 }} />
+              <Text bold size={14} style={{ marginLeft : 5 }}>/ {item.idea.measure.unit}</Text>
+            </Block>
+            <Block center row>
+              <Ionicons name="ios-calendar" color={materialTheme.COLORS.WARNING} size={20} />
+              <Text bold size={14} style={{ marginLeft : 5 }}>till {item.end}</Text>
+            </Block>
+          </Block>
+        </Block>
+      );
+    });
+
     return (
       <Block flex style={styles.profile}>
         <Block flex>
           <ImageBackground
-            source={{uri: Images.Profile}}
+            source={{uri: currentProfile.pic}}
             style={styles.profileContainer}
             imageStyle={styles.profileImage}>
             <Block flex style={styles.profileDetails}>
               <Block style={styles.profileTexts}>
-                <Text color="white" size={28} style={{ paddingBottom: 8 }}>Palash Roy</Text>
+                <Text color="white" size={28} style={{ paddingBottom: 8 }}>{currentProfile.name}</Text>
                 <Block row space="between">
                   <Block center row>
                     <Ionicons name="ios-leaf" size={28} color={materialTheme.COLORS.SUCCESS} />
                     <Text size={20} color={materialTheme.COLORS.SUCCESS}>
-                        250
+                        {numeral(currentProfile.coins).format('0.0 a')}
                     </Text>
                   </Block>
                   <Block>
@@ -46,34 +110,28 @@ export default class Profile extends React.Component {
         <Block flex style={styles.options}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <Block row space="between" style={{ padding: theme.SIZES.BASE, }}>
-              <Block middle>
-                <Text bold size={12} style={{marginBottom: 8}}>36</Text>
-                <Text muted size={12}>Orders</Text>
+              <Block center>
+                <Ionicons name="ios-leaf" size={20} color={materialTheme.COLORS.SUCCESS} />
+                <Text muted size={14}>{numeral(currentProfile.coins).format('0.0 a')}</Text>
+                <Text muted size={14}>leaves</Text>
               </Block>
-              <Block middle>
-                <Text bold size={12} style={{marginBottom: 8}}>5</Text>
-                <Text muted size={12}>Bids & Offers</Text>
+              <Block center>
+                <Ionicons name="ios-flash" color={materialTheme.COLORS.INFO} size={20} />
+                <Text muted size={14}>{currentProfile.challenges}</Text>
+                <Text muted size={14}>challenges</Text>
               </Block>
-              <Block middle>
-                <Text bold size={12} style={{marginBottom: 8}}>2</Text>
-                <Text muted size={12}>Messages</Text>
+              <Block center>
+                <Ionicons name="ios-flag" size={20} color={materialTheme.COLORS.WARNING} />
+                <Text muted size={14}>{currentProfile.leading}</Text>
+                <Text muted size={14}>leading</Text>
               </Block>
             </Block>
             <Block row space="between" style={{ paddingVertical: 16, alignItems: 'baseline' }}>
-              <Text size={16}>My active challenges</Text>
-              <Text size={12} color={theme.COLORS.PRIMARY} onPress={() => this.props.navigation.navigate('Home')}>View All</Text>
+              <Text size={16}>Active challenges</Text>
             </Block>
+
             <Block style={{ paddingBottom: -HeaderHeight * 2 }}>
-              <Block row space="between" style={{ flexWrap: 'wrap' }} >
-                {Images.Viewed.map((img, imgIndex) => (
-                  <Image
-                    source={{ uri: img }}
-                    key={`viewed-${img}`}  
-                    resizeMode="cover"
-                    style={styles.thumb}
-                  />
-                ))}
-              </Block>
+              {renderActiveChallenges}
             </Block>
           </ScrollView>
         </Block>
@@ -81,6 +139,8 @@ export default class Profile extends React.Component {
     );
   }
 }
+
+export default withNavigation(Profile);
 
 const styles = StyleSheet.create({
   profile: {
@@ -120,7 +180,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     padding: theme.SIZES.BASE,
     marginHorizontal: theme.SIZES.BASE,
-    marginTop: -theme.SIZES.BASE * 7,
+    marginTop: -theme.SIZES.BASE * 3,
     borderTopLeftRadius: 13,
     borderTopRightRadius: 13,
     backgroundColor: theme.COLORS.WHITE,
@@ -144,5 +204,47 @@ const styles = StyleSheet.create({
     bottom: 0,
     height: '30%',
     position: 'absolute',
+  },
+  product: {
+    backgroundColor: theme.COLORS.WHITE,
+    marginVertical: theme.SIZES.BASE,
+    borderWidth: 0,
+    minHeight: 114,
+  },
+  productTitle: {
+    flex: 1,
+    flexWrap: 'wrap',
+    paddingBottom: 6,
+  },
+  productDescription: {
+    padding: theme.SIZES.BASE / 2,
+  },
+  imageContainer: {
+    elevation: 1,
+  },
+  image: {
+    borderRadius: 3,
+    marginHorizontal: theme.SIZES.BASE / 2,
+    marginTop: -16,
+  },
+  avatar: {
+    height: 40,
+    width: 40,
+    borderRadius: 20
+  },
+  horizontalImage: {
+    height: 140,
+    width: 'auto',
+  },
+  fullImage: {
+    height: 215,
+    width: width - theme.SIZES.BASE * 3,
+  },
+  shadow: {
+    shadowColor: theme.COLORS.BLACK,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    shadowOpacity: 0.1,
+    elevation: 2,
   },
 });
