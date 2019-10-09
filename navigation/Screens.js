@@ -12,6 +12,7 @@ import ProfileScreen from '../screens/Profile';
 import ProScreen from '../screens/Pro';
 import SettingsScreen from '../screens/Settings';
 import GreenMart from '../screens/GreenMart';
+import AddChallenge from '../screens/AddChallenge';
 
 import Menu from './Menu';
 import Header from '../components/Header';
@@ -129,7 +130,7 @@ const HomeStack = createMaterialBottomTabNavigator(
       }
     },
     Challenge: { 
-      screen: HomeScreen,
+      screen: AddChallenge,
       navigationOptions: {
         tabBarLabel: 'Challenge',
         tabBarIcon: <Ionicons name="md-add-circle-outline" size={24} />,
@@ -140,7 +141,7 @@ const HomeStack = createMaterialBottomTabNavigator(
       screen: ProfileScreen,
       navigationOptions: {
         tabBarLabel: 'Stats',
-        tabBarIcon: <Ionicons name="ios-cube" size={24} />,
+        tabBarIcon: <Ionicons name="md-stats" size={24} />,
         gesturesEnabled: false,
       }
     },
@@ -210,15 +211,6 @@ const AppStack = createDrawerNavigator(
         ),
       }),
     },
-    /*
-    Settings: {
-      screen: SettingsStack,
-      navigationOptions: (navOpt) => ({
-        drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Settings" title="Settings" />
-        ),
-      }),
-    },
     Components: {
       screen: ComponentsStack,
       navigationOptions: (navOpt) => ({
@@ -227,6 +219,16 @@ const AppStack = createDrawerNavigator(
         ),
       }),
     },
+
+    Settings: {
+      screen: SettingsStack,
+      navigationOptions: (navOpt) => ({
+        drawerLabel: ({focused}) => (
+          <Drawer focused={focused} screen="Settings" title="Settings" />
+        ),
+      }),
+    },
+    /*
     MenuDivider: {
       screen: HomeStack,
       navigationOptions: {

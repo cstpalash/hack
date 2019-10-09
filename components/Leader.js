@@ -46,7 +46,7 @@ class Leader extends React.Component {
           <TouchableWithoutFeedback onPress={this.navigateToProfile}>
             <Block flex style={{ marginTop : 5}}>
               <Block >
-                <Text bold size={20} style={styles.productTitle}>Rank - {leader.rank}</Text>
+                <Text bold size={20} color={materialTheme.COLORS.SUCCESS} style={styles.productTitle}>Rank - {leader.rank}</Text>
               </Block>
               <Block row space="between" style={{ marginTop : 5 }}>
                 <Block center>
