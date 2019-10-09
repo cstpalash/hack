@@ -13,7 +13,7 @@ export default [
       end : '31 Dec 2019',
       idea : {
         id : 1,
-        name : 'Tree planting',
+        name : 'Plant a tree',
         desc : 'Trees contribute to the global environment by improving air quality, conserving water, preserving soil, supporting wildlife.',
         pic : Images.Challenge.TreePlanting,
         measure : {
@@ -56,7 +56,7 @@ export default [
       end : '31 Mar 2020',
       idea : {
         id : 2,
-        name : 'Using public transport',
+        name : 'Use public transport to office',
         desc : 'Using public transport can significantly reduce carbon emissions, we all should avail where efficient.',
         pic : Images.Challenge.PublicTransport,
         measure : {
@@ -99,7 +99,7 @@ export default [
       end : '01 Jan 2020',
       idea : {
         id : 3,
-        name : 'Cycling',
+        name : 'Cycling around',
         desc : 'Cycling could reduce carbon emissions by a substantial amount, having footprint 0.002% of a car',
         pic : Images.Challenge.Cycling,
         measure : {
@@ -127,6 +127,93 @@ export default [
             pic : Images.Picture.Maitri,
             coins : 80
           }
+        ]
+      }
+    },
+    {
+      id : 4,
+      type : 'challenge',
+      by : {
+        name : 'Suraj Kumar',
+        pic : Images.Picture.Suraj,
+        createdOn : '10 Oct 2019 at 02:30pm',
+      },
+      start : null,
+      end : '31 Jan 2020',
+      idea : {
+        id : 4,
+        name : 'Use stairs',
+        desc : 'Using stairs and avoiding escalator reduces carbon emissions by a substantial amount.',
+        pic : Images.Challenge.StairClimbing,
+        measure : {
+          unit : "20 steps",
+          leaf : 1
+        }
+      },
+      stats : {
+        subscribed : 45,
+        isSubscribedByMe : false,
+        winningProbability : 54,
+        leaders : [
+          {
+            name : 'Mayur',
+            pic : Images.Picture.Mayur,
+            coins : 350
+          },
+          {
+            name : 'Pankaj',
+            pic : Images.Picture.Pankaj,
+            coins : 180
+          },
+          {
+            name : 'Maitri',
+            pic : Images.Picture.Maitri,
+            coins : 80
+          }
+        ]
+      }
+    },
+    {
+      id : 5,
+      type : 'challenge',
+      by : {
+        name : 'Suraj Kumar',
+        pic : Images.Picture.Suraj,
+        createdOn : '10 Oct 2019 at 03:30pm',
+      },
+      start : null,
+      end : '31 Mar 2020',
+      idea : {
+        id : 4,
+        name : 'Bring plastic products',
+        desc : 'Bring plastic goods in office as much you can, we shall process to recycle',
+        pic : Images.Challenge.RecyclePlastic,
+        measure : {
+          unit : "500 gm",
+          leaf : 1
+        }
+      },
+      stats : {
+        subscribed : 130,
+        isSubscribedByMe : false,
+        winningProbability : 85,
+        leaders : [
+          {
+            name : 'Maitri',
+            pic : Images.Picture.Maitri,
+            coins : 450
+          },
+          {
+            name : 'Mayur',
+            pic : Images.Picture.Mayur,
+            coins : 350
+          },
+          {
+            name : 'Pankaj',
+            pic : Images.Picture.Pankaj,
+            coins : 180
+          },
+          
         ]
       }
     }

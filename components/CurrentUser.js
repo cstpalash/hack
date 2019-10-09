@@ -37,9 +37,6 @@ class CurrentUser extends React.Component {
             <Text size={16} color="white">{user.city}</Text>
           </Block>
           <Text size={16} muted style={styles.seller}>{user.country}</Text>
-          <Text size={16} color={materialTheme.COLORS.SUCCESS}>
-            {this.state.rating} <Icon name="shape-star" family="GalioExtra" size={14} />
-          </Text>
         </Block>
       </Block>
     );
@@ -76,7 +73,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
     borderRadius: 20,
-    marginBottom: theme.SIZES.BASE,
+    marginBottom: 10,
   },
   pro: {
     backgroundColor: materialTheme.COLORS.LABEL,

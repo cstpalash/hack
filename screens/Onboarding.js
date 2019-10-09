@@ -40,15 +40,20 @@ class Onboarding extends React.Component {
 
     return (
       <Block flex style={styles.container}>
-        <StatusLogo />
+        <Block flex center>
+          <ImageBackground
+            source={{  uri: Images.Face }}
+            style={{ height: height, width: width, marginTop: '-55%', zIndex: 1 }}
+          />
+        </Block>
         <Block flex space="between" style={styles.padded}>
           <Block flex space="around" style={{ zIndex: 2 }}>
             <Block center style={{ marginTop : 40 }}>
               <Block>
-                <Text color={materialTheme.COLORS.SUCCESS} size={60}>Green Bank</Text>
+                <Text color={materialTheme.COLORS.SUCCESS} size={60}>ERDE</Text>
               </Block>
               <Text size={20} color={materialTheme.COLORS.SUCCESS}>
-                Imagining sustainable future
+                The challenge is real...
               </Text>
             </Block>
             <Block center>

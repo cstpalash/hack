@@ -11,6 +11,7 @@ import OnboardingScreen from '../screens/Onboarding';
 import ProfileScreen from '../screens/Profile';
 import ProScreen from '../screens/Pro';
 import SettingsScreen from '../screens/Settings';
+import GreenMart from '../screens/GreenMart';
 
 import Menu from './Menu';
 import Header from '../components/Header';
@@ -144,7 +145,7 @@ const HomeStack = createMaterialBottomTabNavigator(
       }
     },
     Market: { 
-      screen: HomeScreen,
+      screen: GreenMart,
       navigationOptions: {
         tabBarLabel: 'Market',
         tabBarIcon: <Ionicons name="ios-cart" size={24} />,
@@ -209,6 +210,7 @@ const AppStack = createDrawerNavigator(
         ),
       }),
     },
+    /*
     Settings: {
       screen: SettingsStack,
       navigationOptions: (navOpt) => ({
@@ -225,7 +227,6 @@ const AppStack = createDrawerNavigator(
         ),
       }),
     },
-    /*
     MenuDivider: {
       screen: HomeStack,
       navigationOptions: {
