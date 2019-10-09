@@ -6,6 +6,7 @@ import { Block, Text, theme } from "galio-framework";
 
 import ComponentsScreen from '../screens/Components';
 import HomeScreen from '../screens/Home';
+import LeaderBoard from '../screens/LeaderBoard';
 import OnboardingScreen from '../screens/Onboarding';
 import ProfileScreen from '../screens/Profile';
 import ProScreen from '../screens/Pro';
@@ -102,7 +103,7 @@ const HomeStack = createMaterialBottomTabNavigator(
       }
     },
     Leaders: { 
-      screen: ProScreen,
+      screen: LeaderBoard,
       navigationOptions: {
         tabBarLabel: 'Leaders',
         tabBarIcon: <Ionicons name="ios-people" size={24} />,

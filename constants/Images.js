@@ -30,7 +30,7 @@ const Challenge = {
 
 const Picture = {
   Palash : 'https://greenbank1.s3.ap-south-1.amazonaws.com/me1.jpg',
-  Suraj : 'https://greenbank1.s3.ap-south-1.amazonaws.com/suraj.png',
+  Suraj : 'https://greenbank1.s3.ap-south-1.amazonaws.com/suraj.jpg',
   Shyamu : 'https://greenbank1.s3.ap-south-1.amazonaws.com/sam.jpg',
   Pankaj : 'https://greenbank1.s3.ap-south-1.amazonaws.com/pankaj.jpg',
   Mayur : 'https://greenbank1.s3.ap-south-1.amazonaws.com/mayur.jpg',
