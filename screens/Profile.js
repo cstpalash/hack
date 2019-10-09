@@ -34,16 +34,18 @@ class Profile extends React.Component {
       return item.email == email
     });
 
+    let submitEvidenceAllowed = (email == 'palash.roy@db.com');
+
     const renderActiveChallenges = _.map(currentProfile.activeChallenges, item => {
       return (
         <Block card flex style={[styles.product, styles.shadow, style]} key={item.id}>
           <Block row >
-            <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro', { product: product })}>
+            <TouchableWithoutFeedback onPress={() => submitEvidenceAllowed ? navigation.navigate('SubmitEvidence', { challenge: item }) : null}>
               <Block flex style={[styles.imageContainer, styles.shadow]}>
                 <Image source={{ uri: item.idea.pic }} style={imageStyles} />
               </Block>
             </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro', { product: product })}>
+            <TouchableWithoutFeedback onPress={() => submitEvidenceAllowed ? navigation.navigate('SubmitEvidence', { challenge: item }) : null}>
               <Block flex style={{ marginTop : 5}}>
                 <Block row >
                   <Image source={{ uri: item.by.pic}} style={styles.avatar} />

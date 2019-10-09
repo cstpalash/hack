@@ -13,6 +13,7 @@ import ProScreen from '../screens/Pro';
 import SettingsScreen from '../screens/Settings';
 import GreenMart from '../screens/GreenMart';
 import AddChallenge from '../screens/AddChallenge';
+import SubmitEvidence from '../screens/SubmitEvidence';
 
 import Menu from './Menu';
 import Header from '../components/Header';
@@ -64,6 +65,12 @@ const ProfileStack = createStackNavigator({
       header: <Header title="Profile" navigation={navigation} />,
     })
   },
+  SubmitEvidence : {
+    screen: SubmitEvidence,
+    navigationOptions: ({ navigation }) => ({
+      header: <Header back title="Submit Evidence" navigation={navigation} />,
+    })
+  }
 }, {
   cardStyle: { backgroundColor: '#EEEEEE', },
   transitionConfig,
