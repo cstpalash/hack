@@ -14,6 +14,8 @@ export default class StatusLogo extends React.Component {
 	constructor(props) {
 	    super(props);
 
+
+
 	    this.sliderMap = {
 	    	"0" : "2020/Jan",
 	    	"1" : "2020/Feb",
@@ -27,7 +29,7 @@ export default class StatusLogo extends React.Component {
 	    	"9" : "2020/Oct",
 	    	"10" : "2020/Nov",
 	    	"11" : "2020/Dec",
-
+	    	/*
 	    	"12" : "2021/Jan",
 	    	"13" : "2021/Feb",
 	    	"14" : "2021/Mar",
@@ -79,25 +81,52 @@ export default class StatusLogo extends React.Component {
 	    	"57" : "2024/Oct",
 	    	"58" : "2024/Nov",
 	    	"59" : "2024/Dec",
+	    	*/
 	    }
 
-	    this.state = { slider : 0, text : this.sliderMap["0"], greenOpacity : 0, totalLeaves : numeral(5000).format('0.0 a') };
+	    let {initialValue,maxValue} = this.props;
+
+	    let sliderValue = (initialValue / maxValue )* 11;
+
+	    this.state = { slider : sliderValue, text : this.sliderMap[Math.floor(sliderValue).toString()], greenOpacity : sliderValue / 11, totalLeaves : numeral(initialValue).format('0.0 a') };
 
 	    this.onValueChange = this.onValueChange.bind(this);
 	}
 
+	componentDidMount(){
+		let {initialValue,maxValue} = this.props;
+		let sliderValue = (initialValue / maxValue ) * 11;
+
+		this.setState({ slider : sliderValue, text : this.sliderMap[Math.floor(sliderValue).toString()], greenOpacity : sliderValue / 11, totalLeaves : numeral(initialValue).format('0.0 a') });
+
+	}
+
+	componentWillReceiveProps(nextProps) {
+	    if (this.props.initialValue !== nextProps.initialValue) {
+	      
+	      	let {initialValue,maxValue} = nextProps;
+			let sliderValue = (initialValue / maxValue ) * 11;
+
+			this.setState({ slider : sliderValue, text : this.sliderMap[Math.floor(sliderValue).toString()], greenOpacity : sliderValue / 11, totalLeaves : numeral(initialValue).format('0.0 a') });
+
+	    }
+	}
+
 	onValueChange(slider) {
+		let {initialValue,maxValue} = this.props;
+
 	    this.setState(() => {
 	      return {
 	        slider: parseFloat(slider),
 	        text: this.sliderMap[Math.floor(slider).toString()],
-	        greenOpacity: (slider / 59),
-	        totalLeaves: numeral(5000 + (slider / 59 * 100 * 100000)).format('0.0 a')
+	        greenOpacity: (slider / 11),
+	        totalLeaves: numeral((slider / 11 * maxValue)).format('0.0 a')
 	      };
 	    });
 	}
 
 	render() {
+
 		return (
 			<Block flex space="between">
 				<Block>
@@ -114,7 +143,7 @@ export default class StatusLogo extends React.Component {
 		          
 		        </Block>
 		        <Block style={styles.slider}>
-	        		<Slider value={this.state.slider} onValueChange={this.onValueChange} maximumValue={59} />
+	        		<Slider value={this.state.slider} onValueChange={this.onValueChange} maximumValue={11} />
 		        </Block>
 		        <Block center row>
 			        <Text size={20} color={materialTheme.COLORS.SUCCESS}>

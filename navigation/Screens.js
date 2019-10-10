@@ -14,6 +14,7 @@ import SettingsScreen from '../screens/Settings';
 import GreenMart from '../screens/GreenMart';
 import AddChallenge from '../screens/AddChallenge';
 import SubmitEvidence from '../screens/SubmitEvidence';
+import Stats from '../screens/Stats';
 
 import Menu from './Menu';
 import Header from '../components/Header';
@@ -120,19 +121,19 @@ const LeaderBoardStack = createStackNavigator({
 
 const HomeStack = createMaterialBottomTabNavigator(
   {
+    Stats: { 
+      screen: Stats,
+      navigationOptions: {
+        tabBarLabel: 'Stats',
+        tabBarIcon: <Ionicons name="md-stats" size={24} />,
+        gesturesEnabled: false,
+      }
+    },
     Feed: { 
       screen: HomeScreen, 
       navigationOptions: {
         tabBarLabel: 'Feed',
         tabBarIcon: <Ionicons name="ios-paper" size={24} />,
-        gesturesEnabled: false,
-      }
-    },
-    Leaders: { 
-      screen: LeaderBoardStack,
-      navigationOptions: {
-        tabBarLabel: 'Leaders',
-        tabBarIcon: <Ionicons name="ios-people" size={24} />,
         gesturesEnabled: false,
       }
     },
@@ -144,11 +145,11 @@ const HomeStack = createMaterialBottomTabNavigator(
         gesturesEnabled: false,
       }
     },
-    Stats: { 
-      screen: ProfileScreen,
+    Leaders: { 
+      screen: LeaderBoardStack,
       navigationOptions: {
-        tabBarLabel: 'Stats',
-        tabBarIcon: <Ionicons name="md-stats" size={24} />,
+        tabBarLabel: 'Leaders',
+        tabBarIcon: <Ionicons name="ios-people" size={24} />,
         gesturesEnabled: false,
       }
     },
@@ -162,7 +163,7 @@ const HomeStack = createMaterialBottomTabNavigator(
     }
   },
   {
-    initialRouteName: 'Feed',
+    initialRouteName: 'Stats',
     activeColor: materialTheme.COLORS.SUCCESS,
     inactiveColor: materialTheme.COLORS.MUTED,
     barStyle: { backgroundColor: '#EEEEEE' },

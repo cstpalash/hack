@@ -1,4 +1,4 @@
-
+const Erde = 'https://greenbank1.s3.ap-south-1.amazonaws.com/erde.png';
 const Onboarding = 'https://greenbank1.s3.ap-south-1.amazonaws.com/logo.png';
 const Face = 'https://images.unsplash.com/photo-1505995433366-e12047f3f144?fit=crop&w=840&q=80';
 //const Face = 'https://greenbank1.s3.ap-south-1.amazonaws.com/erde.jpg';
@@ -47,5 +47,6 @@ export default {
   Viewed,
   Avatar,
   Challenge,
-  Picture
+  Picture,
+  Erde
 }

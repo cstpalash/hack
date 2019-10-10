@@ -8,6 +8,7 @@ import Header from './Header';
 import Switch from './Switch';
 import Post from './Post';
 import Leader from './Leader'
+import StatusLogo from './StatusLogo'
 
 export {
   Button,
@@ -19,5 +20,6 @@ export {
   Header,
   Switch,
   Post,
-  Leader
+  Leader,
+  StatusLogo
 };

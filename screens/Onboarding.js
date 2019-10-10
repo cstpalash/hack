@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, StatusBar, Dimensions, Platform } from 'react-native';
+import { ImageBackground, StyleSheet, StatusBar, Dimensions, Platform, Image } from 'react-native';
 import { Block, Button, Text, theme, Input } from 'galio-framework';
 import StatusLogo from '../components/StatusLogo';
 
@@ -49,7 +49,10 @@ class Onboarding extends React.Component {
         <Block flex space="between" style={styles.padded}>
           <Block flex space="around" style={{ zIndex: 2 }}>
             <Block center style={{ marginTop : 40 }}>
-              <Block>
+              <Block style={{ marginTop : -100, marginLeft : 10 }}>
+                <Image source={{ uri: Images.Erde }} style={{ height : 200, width : 200, tintColor : materialTheme.COLORS.SUCCESS }} />
+              </Block>
+              <Block style={{ marginTop : -80 }}>
                 <Text color={materialTheme.COLORS.SUCCESS} size={60}>ERDE</Text>
               </Block>
               <Text size={20} color={materialTheme.COLORS.SUCCESS}>
